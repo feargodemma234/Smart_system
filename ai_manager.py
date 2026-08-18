@@ -2,7 +2,7 @@ import os
 from groq import Groq
 
 # Use the latest stable Groq model
-MODEL = "llama3-70b-8192" # This one won't get decommissioned soon
+MODEL = "llama-3.3-70b-versatile" # This one won't get decommissioned soon
 
 def get_groq_client():
     api_key = os.getenv("GROQ_API_KEY")
