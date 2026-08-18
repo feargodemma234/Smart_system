@@ -1,6 +1,6 @@
 import streamlit as st
 from ai_manager import get_ai_response
-
+import os
 st.set_page_config(page_title="Quantum AI", page_icon="⚛️", layout="wide")
 
 st.title("⚛️ Quantum AI")
