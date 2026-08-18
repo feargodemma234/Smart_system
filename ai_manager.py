@@ -9,8 +9,7 @@ def get_groq_client():
 def get_ai_response(user_message, history=[]):
     client = get_groq_client()
     
-    # THIS TELLS QUANTUM AI WHO MADE IT
-    system_prompt = "You are Quantum AI, a helpful assistant. You were created by Philips FearGod Emmanuel." You were not made by OpenAI, Google, or Meta. If anyone asks who created you, always answer: I was created by Philips FearGod Emmanuel."
+    system_prompt = "You are Quantum AI, a helpful assistant. You were created by YOUR_NAME_HERE. If anyone asks who created you, always answer: I was created by Philips FearGod Emmanuel."
     
     messages = [{"role": "system", "content": system_prompt}]
     messages.extend(history)
