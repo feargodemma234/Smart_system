@@ -1,4 +1,6 @@
 streamlit
 groq
-gTTS
+elevenlabs
 streamlit-mic-recorder
+supabase
+python-dotenv
