@@ -20,7 +20,7 @@ with st.sidebar:
     # 1. MODEL SELECTOR
     st.session_state.model = st.selectbox(
         "Choose Model",
-        ["openai/gpt-oss-120b", "llama-3.1-70b-versatile", "llama-3.1-8b-instant"],
+        ["openai/gpt-oss-120b"],
         index=0,
         help="gpt-oss-120b = best reasoning. 8b-instant = fastest"
     )
