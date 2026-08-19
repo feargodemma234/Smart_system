@@ -126,24 +126,28 @@ else:
                     st.write(response)
             st.session_state.history.append(f"AI: {response}")
 
-    # 2. IMAGE GEN - 3 FREE TRIALS - FIXED
-    elif page == "🎨 Image Gen":
-        st.title("🎨 AI Image Generation")
-        if st.session_state.is_pro == 0 and st.session_state.img_trials <= 0:
-            st.error("You used all 3 free trials. Upgrade to Pro for unlimited.")
-            st.link_button("Upgrade to Pro - ₦5000/month", "https://opay.ng/s/36QEa", type="primary")
-        else:
-            if st.session_state.is_pro == 0:
-                st.warning(f"You have {st.session_state.img_trials} free generations left")
-            prompt = st.text_input("Describe the image you want", placeholder="A futuristic city at night, 4k")
-            if st.button("Generate Image", type="primary"):
-                with st.spinner("Generating..."):
-                    img = generate_image(prompt)
-                    if img:
-                        st.image(img, caption=prompt, use_column_width=True)
-                        if st.session_state.is_pro == 0:
-                            st.session_state.img_trials -= 1
-                            st.rerun()
+    # 2. def generate_image(prompt):
+    st.info("Generating image... 15-20s")
+    safe_prompt = urllib.parse.quote(prompt)
+    
+    # API 1: a0.dev
+    apis = [
+        f"https://api.a0.dev/assets/image?text={safe_prompt}&aspect=1:1",
+        f"https://image.pollinations.ai/prompt/{safe_prompt}?width=1024&height=1024&nologo=true",
+        f"https://api.together.xyz/v1/images/generations" # backup
+    ]
+    
+    for i, url in enumerate(apis):
+        try:
+            response = requests.get(url, timeout=60)
+            if response.status_code == 200 and len(response.content) > 1000:
+                return Image.open(BytesIO(response.content))
+        except:
+            st.write(f"Trying backup API {i+1}...")
+            continue
+    
+    st.error("All image APIs failed. Try a simpler prompt like 'a cat'")
+    return None
 
     # 3. PDF CHAT - 3 FREE TRIALS
     elif page == "📄 PDF Chat":
