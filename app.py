@@ -17,9 +17,7 @@ if "model" not in st.session_state:
 with st.sidebar:
     st.header("⚙️ Settings")
     
-    # 1. MODEL SELECTOR
-    st.session_state.model = st.selectbox(
-        "Choose Model",
+    "Model",
         ["openai/gpt-oss-120b"],
         index=0,
         help="gpt-oss-120b = best reasoning. 8b-instant = fastest"
