@@ -107,7 +107,7 @@ elif page == "Billing":
         # IMPORTANT: Replace MERCHANT_ID and CALLBACK_URL
         opay_link = f"https://pay.opaycheckout.com/link/quantum-ai-pro?reference={payment_ref}&email={st.session_state.email}"
         
-        st.link_button("Upgrade to Pro - ₦5,000/month with OPay", opay_link, type="primary")
+        st.link_button("Upgrade to Pro - ₦500/month with OPay", opay_link, type="primary")
         
         st.info("After payment, OPay will redirect you back here and you will be upgraded automatically.")
         
