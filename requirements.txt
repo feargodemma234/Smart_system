@@ -1,6 +1,6 @@
 streamlit
 groq
-elevenlabs
+elevenlabs==1.9.0
 streamlit-mic-recorder
 supabase
 python-dotenv
