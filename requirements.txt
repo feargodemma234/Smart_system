@@ -4,3 +4,4 @@ elevenlabs
 streamlit-mic-recorder
 supabase
 python-dotenv
+pillow
