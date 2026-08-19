@@ -12,8 +12,14 @@ conn = sqlite3.connect("users.db", check_same_thread=False)
 c = conn.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS users 
              (email TEXT PRIMARY KEY, password TEXT, is_pro INTEGER, 
-              chat_history TEXT, img_trials INTEGER, pdf_trials INTEGER)''')
+              chat_history TEXT, img_trials INTEGER DEFAULT 3, pdf_trials INTEGER DEFAULT 3)''')
 conn.commit()
+
+# Auto-add columns if old DB exists
+try: c.execute("ALTER TABLE users ADD COLUMN img_trials INTEGER DEFAULT 3")
+except: pass
+try: c.execute("ALTER TABLE users ADD COLUMN pdf_trials INTEGER DEFAULT 3")
+except: pass
 
 def get_user(email): 
     return c.execute("SELECT * FROM users WHERE email=?", (email,)).fetchone()
