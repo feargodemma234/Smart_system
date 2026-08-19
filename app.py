@@ -1,7 +1,4 @@
 import streamlit as st
-st.login() # if using Streamlit 1.37+
-# or build simple login with Supabase/Firebase
-import streamlit as st
 from ai_manager import get_ai_response
 
 st.set_page_config(page_title="Quantum AI", page_icon="⚛️", layout="wide")
