@@ -92,24 +92,35 @@ elif page == "Voice Studio":
         audio = text_to_speech(text_input, lang)
         st.audio(audio)
 
-# --- PAGE 3: BILLING + AUTO UPGRADE ---
+# --- PAGE 3: BILLING ---
 elif page == "Billing":
     st.title("💳 Billing & Upgrade")
     
     if is_pro:
-        st.success("You are already a Pro Member!")
+        st.success("You are already a Pro Member! 🎉")
+        st.write("Thanks for supporting Quantum AI Pro")
     else:
-        st.write("Unlock Pro Features")
-        # Generate unique reference for this user
-        payment_ref = f"quantum_{st.session_state.email}_{uuid.uuid4()}"
+        st.write("Unlock Pro Features with OPay")
         
-        # YOUR OPAY PAYMENT LINK WITH CALLBACK
-        # IMPORTANT: Replace MERCHANT_ID and CALLBACK_URL
-        opay_link = f"https://pay.opaycheckout.com/link/quantum-ai-pro?reference={payment_ref}&email={st.session_state.email}"
+        col1, col2 = st.columns(2)
+        with col1:
+            st.subheader("Free Plan")
+            st.write("✅ Basic Chat - 50 messages/day")
+            st.write("✅ Free Google TTS")
+            st.button("Current Plan", disabled=True, use_container_width=True)
         
-        st.link_button("Upgrade to Pro - ₦500/month with OPay", opay_link, type="primary")
+        with col2:
+            st.subheader("Pro Plan - ₦500/month")
+            st.write("✅ Unlimited Chat")
+            st.write("✅ Priority Support")
+            st.write("✅ Longer Voice Messages")
+            
+            # YOUR REAL OPAY PAYMENT LINK
+            opay_link = "https://opay.ng/s/36QEa"
+            st.link_button("Upgrade with OPay", opay_link, type="primary", use_container_width=True)
+            st.caption("Pay with Card, Bank Transfer, or OPay Wallet")
         
-        st.info("After payment, OPay will redirect you back here and you will be upgraded automatically.")
+        st.warning("After payment, come back to this page and refresh. Your account will be upgraded to Pro.")
         
         # --- CHECK FOR PAYMENT CALLBACK ---
         query_params = st.query_params
